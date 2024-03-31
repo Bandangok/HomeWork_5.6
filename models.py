@@ -63,7 +63,7 @@ class Sale(Base):
     stocks3 = relationship(Stock, backref='sales1')
 
 def create_tables(engine):
-    Base.metadata.drop_all(engine)
+    # Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
 
 
