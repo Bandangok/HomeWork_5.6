@@ -56,9 +56,9 @@ class Sale(Base):
 
     id = sq.Column(sq.Integer, primary_key=True)
     price = sq.Column(sq.Float, nullable=False)
-    data_sale = sq.Column(sq.Text)
     id_stock = sq.Column(sq.Integer, sq.ForeignKey('stock.id'), nullable=False)
     count = sq.Column(sq.Integer)
+    data_sale = sq.Column(sq.Date)
 
     stocks3 = relationship(Stock, backref='sales1')
 

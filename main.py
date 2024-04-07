@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 from models import create_tables, Publisher, Book, Stock, Shop, Sale
 
-DSN = 'postgresql://postgres:12345@localhost:5432/postgres'
+DSN = 'postgresql://postgres:4815162342@localhost:5432/postgres'
 engine = sqlalchemy.create_engine(DSN)
 
 create_tables(engine)
@@ -75,13 +75,14 @@ session.close()
 #     print(f"{sale.stock.book.title} | {sale.stock.shop.name} | {sale.price} | {sale.data_sale}")
 
 def get_sales(aauthor):
-    poisk = session.query(Book.title, Shop.name, Sale.price, Sale.data_sale ).select_from(Shop).join(Stock.shopes1).join(Sale.stocks3).join(Stock.books1).join(Book.publisher).join(Publisher)
+    poisk = session.query(Book.title, Shop.name, Sale.price, Sale.data_sale).select_from(Shop).join(Stock).join(Book).join(Publisher).join(Sale)
     if aauthor.isdigit():
         zept = poisk.filter(Publisher.id == aauthor).all()
     else:
         zept = poisk.filter(Publisher.name == aauthor).all()
     for a,b,c,d in zept:
-        print(f'{a:<40} | {b:<10} | {c:<8} | {d.strftime("%d-%m-%Y")}')
+        # print(f'{a:<40} | {b:<10} | {c:<8} | {d.strftime("%d-%m-%Y")}')
+        print(f'{a:<40} | {b:<10} | {c:<8}')
 if __name__ == '__main__':
     pub = input("Введите ФИО писателя или его ID: ")
     get_sales(pub)
