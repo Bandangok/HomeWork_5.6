@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 
 from models import create_tables, Publisher, Book, Stock, Shop, Sale
 
-DSN = 'postgresql://postgres:4815162342@localhost:5432/postgres'
+DSN = 'postgresql://postgres:12345@localhost:5432/postgres'
 engine = sqlalchemy.create_engine(DSN)
 
 create_tables(engine)
@@ -81,8 +81,7 @@ def get_sales(aauthor):
     else:
         zept = poisk.filter(Publisher.name == aauthor).all()
     for a,b,c,d in zept:
-        # print(f'{a:<40} | {b:<10} | {c:<8} | {d.strftime("%d-%m-%Y")}')
-        print(f'{a:<40} | {b:<10} | {c:<8}')
+        print(f'{a:<40} | {b:<10} | {c:<8} | {d.strftime("%d-%m-%Y")}')
 if __name__ == '__main__':
     pub = input("Введите ФИО писателя или его ID: ")
     get_sales(pub)
